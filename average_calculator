@@ -1,0 +1,55 @@
+# ---------------------------------
+# + | - | * | / | prum | pow | quit
+# ---------------------------------
+
+def nabidka_procesu(*args) -> None:
+    """
+    Popisek:
+    Metodou 'join' spoji hodnoty v parametrech 'args'
+    Potom doplni oddelovac pred a za parametry.oddelovac
+
+    Ukazka:
+    args = ('a', 'b', 'c')
+    Vysledek:
+    ---------
+    a | b | c
+    ---------
+    """
+    nabidka = " | ".join(*args)
+    oddelovac = "-" * len(nabidka)
+    print(oddelovac, nabidka, oddelovac, sep='\n')
+
+def ciselny_vstup(popisek="Hodnota:") -> int:
+    while True:
+        vstup = input(popisek)
+        if je_vstup_cisleny(vstup):
+            return int(vstup)
+        else:
+            print("Neplatny vstup, zkuste znovu...")
+
+def je_vstup_cisleny(vstup) -> bool:
+    return (vstup[0] == '-' and vstup[1:].isdigit()) or vstup.isdigit()
+
+def umocneni_exp() -> None:
+    x1 = ciselny_vstup()
+    x2 = ciselny_vstup("Mocnina:")
+    print("Vysledek:", x1**x2 )
+
+def vypocet_prumeru() -> None:
+    rada_cisel = list()
+
+    while (vstup := input("Hodnota:")) != "quit":
+        if je_vstup_cisleny(vstup):
+            rada_cisel.append(int(vstup))
+
+    print("Prumer:", sum(rada_cisel) / len(rada_cisel))
+
+
+def kalkulacka():
+    procesy = ('pow', 'prumer')
+    nabidka_procesu(procesy)
+#     print(ciselny_vstup())
+#     umocneni_exp()
+    vypocet_prumeru()
+
+kalkulacka()
